@@ -1,8 +1,10 @@
 package BusinessLogic;
 
+import java.util.Random;
+
 public class Customer extends Flight {
 
-	// Protected fields to store customer information
+	// Private fields to store customer information
 	
 		protected String firstName;
 		
@@ -130,7 +132,9 @@ public class Customer extends Flight {
 		}
 		
 		// Method to check login credentials and throw an exception if invalid
+		
 		public boolean login(String username, String password) throws Exception {
+			
 	        // Check if entered username and password match stored values
 	        if (username.equals(this.username) && password.equals(this.password)) {
 	            // Username and password match, login successful
@@ -150,7 +154,59 @@ public class Customer extends Flight {
 	            throw new Exception("Invalid username or security answer");
 			}
 		}
+		
+		private int generateRandomCustomerID() {
+	        // Generate a random 6-digit customerID
+	        Random random = new Random();
+	        return 100000 + random.nextInt(900000); // Generates a random number between 100000 and 999999
+	    }
+		
+		// Method to check if an email is in a valid format
+	    private boolean isValidEmail(String email) {
+	        return email.contains("@");
+	    }
+	    
+	    private void setCustomerInfo(String firstName, String lastName, String address, String zipCode, String state,
+	            String username, String password, String email, String SSN, String securityQuestion,
+	            String securityAnswer, int customerID) {
+	        this.firstName = firstName;
+	        this.lastName = lastName;
+	        this.address = address;
+	        this.zipCode = zipCode;
+	        this.state = state;
+	        this.username = username;
+	        this.password = password;
+	        this.email = email;
+	        this.SSN = SSN;
+	        this.securityQuestion = securityQuestion;
+	        this.securityAnswer = securityAnswer;
+	        this.customerID = customerID;
+	    }
 
+	    public void register(String firstName, String lastName, String address, String zipCode, String state,
+	            String username, String password, String email, String SSN, String securityQuestion,
+	            String securityAnswer) throws Exception {
+
+	        // Basic validation for required fields
+	        if (firstName.isEmpty() || lastName.isEmpty() || address.isEmpty() || zipCode.isEmpty()
+	                || state.isEmpty() || username.isEmpty() || password.isEmpty() || email.isEmpty()
+	                || SSN.isEmpty() || securityQuestion.isEmpty() || securityAnswer.isEmpty()) {
+	            throw new Exception("*All fields are required for registration*");
+	        }
+
+	        // Validate email format
+	        if (!isValidEmail(email)) {
+	            throw new Exception("Invalid email format!");
+	        }
+
+	        // Call the parameterized constructor to set values
+	        setCustomerInfo(firstName, lastName, address, zipCode, state, username, password, email, SSN, securityQuestion,
+	                securityAnswer, generateRandomCustomerID());
+
+	        // Registration successful
+	        System.out.println("Registration successful");
+	    }
 }
+
 		
 
