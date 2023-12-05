@@ -170,6 +170,7 @@ public class Flight {
 
 	}
 
+
 	public String getFlight_price() {
 		return flightPrice;
 	}
@@ -177,6 +178,42 @@ public class Flight {
 	public void setFlight_price(String flight_price) {
 		this.flightPrice = flight_price;
 	}
+	
+	// Method to check if the flight is full and notify the user
+	
+    public boolean flightFull() {
+        if (isFull()) {
+            System.out.println("Sorry, the flight is full. Cannot book more passengers.");
+            return true;
+        } else {
+            System.out.println("The flight is not full. Seats are available.");
+            return false;
+        }
+    }
+    
+    // Method to check for time conflict with another flight and notify the user
+    
+    public boolean flightTimeConflict(Flight otherFlight) {
+        if (hasConflict(otherFlight)) {
+            System.out.println("There is a time conflict with another flight (ID: " + otherFlight.getFlightID() + ").");
+            return true;
+        } else {
+            System.out.println("No time conflict with other flights.");
+            return false;
+        }
+    }
+    
+    // Method to check if the user has already booked this flight using a unique identifier
+    
+    public boolean unique(String passengerID) {
+        if (passengerID != null && passengerID.equals(this.flightID)) {
+            System.out.println("You have already booked this flight (ID: " + this.flightID + ").");
+            return true;
+        } else {
+            System.out.println("This flight is not booked by you. You can proceed with the booking.");
+            return false;
+        }
+    }
 	
 	// Method to check if a flight has a conflicting date and time with another flight
 	

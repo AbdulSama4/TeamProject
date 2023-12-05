@@ -135,12 +135,12 @@ public class Customer extends Flight {
 		
 		public boolean login(String username, String password) throws Exception {
 			
-	        // Check if entered username and password match stored values
+	        // Check if entered user name and password match stored values
 	        if (username.equals(this.username) && password.equals(this.password)) {
 	            // Username and password match, login successful
 	            return true;
 	        } else {
-	            // Username or password is incorrect, throw a standard Exception
+	            // User name or password is incorrect, throw a standard Exception
 	            throw new Exception("Invalid username or password");
 	        }
 		}
