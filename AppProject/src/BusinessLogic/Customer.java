@@ -30,6 +30,7 @@ public class Customer extends Flight {
 		
 		public int customerID;
 		
+		
 		// Default constructor for the Customer class
 		
 		public Customer() {
@@ -133,19 +134,19 @@ public class Customer extends Flight {
 		
 		// Method to check login credentials and throw an exception if invalid
 		
-		public boolean login(String username, String password) throws Exception {
-			
-	        // Check if entered user name and password match stored values
-	        if (username.equals(this.username) && password.equals(this.password)) {
-	            // Username and password match, login successful
-	            return true;
-	        } else {
-	            // User name or password is incorrect, throw a standard Exception
-	            throw new Exception("Invalid username or password");
-	        }
+		public boolean login(String enteredUsername, String enteredPassword) {
+		    // Trim and check if entered username and password match stored values
+		    if (enteredUsername.trim().equals(this.username) && enteredPassword.equals(this.password)) {
+		        // Username and password match, login successful
+		        return true;
+		    } else {
+		        // User name or password is incorrect, login failed
+		        return false;
+		    }
 		}
 		
-		public String retrievePassword(String username, String securityAnswer)throws Exception{
+		public
+		String retrievePassword(String username, String securityAnswer)throws Exception{
 			// Method to retrieve password based on username and security answer
 			if(username.equals(this.username)&& securityAnswer.equals(this.securityAnswer)) {
 				return password;
